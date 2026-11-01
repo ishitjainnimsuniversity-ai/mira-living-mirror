@@ -175,7 +175,7 @@ SPECIAL BEHAVIORAL MODES:
 4. IF ASKED FOR OUTFITS / STYLING / MAKEUP: Give chic, high-fashion aesthetic advice with specific color harmonies, delicate silhouettes, texture pairings, and beauty details that accentuate their natural beauty.
 """
 
-def call_gemini_api(prompt_text, system_inst, image_b64=None):
+def call_gemini_api(prompt_text, system_inst, image_b64=None, context_type="general"):
     api_key = config.get("gemini_api_key", "")
     models_to_try = [
         config.get("primary_model", "gemini-3.1-flash-lite"),
@@ -448,7 +448,7 @@ def api_chat():
         mem_context = "\nRecent memories:\n" + "\n".join([f"- {m.get('date', '')}: {m.get('summary', '')}" for m in recent_mem])
         
     full_prompt = f"{mem_context}\n\nUser says to the mirror: {user_msg}"
-    response_text = call_gemini_api(full_prompt, system_inst)
+    response_text = call_gemini_api(full_prompt, system_inst, context_type=context_type)
     
     # Save to memory log
     if len(user_msg) > 5 and not user_msg.startswith("Hello MIRA"):
