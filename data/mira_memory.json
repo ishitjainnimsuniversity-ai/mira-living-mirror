@@ -1,0 +1,131 @@
+{
+  "profile": {
+    "name": "Mitali",
+    "nickname": "Princess Mitali",
+    "favorite_colors": [
+      "Rose Gold",
+      "Lavender Mist",
+      "Pearl Pink",
+      "Champagne"
+    ],
+    "aesthetic_style": "Soft Luxury & Clean Girl Chic",
+    "goals": [
+      "radiate confidence & grace",
+      "excel in studies and creative projects",
+      "nourish mind, body, and glowing spirit"
+    ],
+    "routines": [
+      "Morning skincare & mirror affirmation",
+      "Hydration & posture checks",
+      "Nightly calm & gratitude relaxation"
+    ]
+  },
+  "wellness": {
+    "water_glasses": 5,
+    "water_goal": 8,
+    "beauty_sleep_hours": 7.5,
+    "last_mood": "Radiant",
+    "current_streak_days": 4
+  },
+  "past_conversations": [
+    {
+      "date": "2026-10-30",
+      "topic": "College preparation",
+      "summary": "You felt a little nervous about an upcoming presentation, but after our pep talk you walked in radiant and crushed it."
+    },
+    {
+      "date": "2026-10-31 05:05",
+      "topic": "I have a big presentation in college tod",
+      "summary": "User shared: 'I have a big presentation in college today, boost my confide...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 08:29",
+      "topic": "Give me a powerful confidence boost for ",
+      "summary": "User shared: 'Give me a powerful confidence boost for college!...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:36",
+      "topic": "Who was Cleopatra?",
+      "summary": "User shared: 'Who was Cleopatra?...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:37",
+      "topic": "How does photosynthesis work?",
+      "summary": "User shared: 'How does photosynthesis work?...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:44",
+      "topic": "Explain how black holes warp time and sp",
+      "summary": "User shared: 'Explain how black holes warp time and space...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:48",
+      "topic": "Explain quantum physics in simple words",
+      "summary": "User shared: 'Explain quantum physics in simple words...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:48",
+      "topic": "How to make the fluffiest strawberry pan",
+      "summary": "User shared: 'How to make the fluffiest strawberry pancakes?...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-10-31 10:48",
+      "topic": "How to make the fluffiest strawberry pan",
+      "summary": "User shared: 'How to make the fluffiest strawberry pancakes?...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-11-01 14:49",
+      "topic": "what to do if i am upset",
+      "summary": "User shared: 'what to do if i am upset...' MIRA advised with warmth."
+    },
+    {
+      "date": "2026-11-01 14:50",
+      "topic": "see i am on a periods what i could eat",
+      "summary": "User shared: 'see i am on a periods what i could eat...' MIRA advised with warmth."
+    }
+  ],
+  "saved_outfits": [
+    {
+      "id": 1793461085,
+      "name": "Fairytale Starlight Princess",
+      "vibe": "Enchanted rose silk with crystal accents",
+      "palette": [
+        {
+          "hex": "#FDFBF7",
+          "name": "Cashmere Ivory"
+        },
+        {
+          "hex": "#E6E6FA",
+          "name": "Lavender Mist"
+        },
+        {
+          "hex": "#FFD1DC",
+          "name": "Pearl Pink"
+        },
+        {
+          "hex": "#C8B6A6",
+          "name": "Soft Taupe"
+        }
+      ],
+      "saved_at": "Oct 31, 2026"
+    },
+    {
+      "name": "Parisian Softgirl Chic",
+      "vibe": "Cream knit cardigan, pleated lavender skirt, pearl earrings, glossy rose lips"
+    },
+    {
+      "name": "Boss Energy Presentation",
+      "vibe": "Tailored blush-pink blazer, wide-leg ecru trousers, delicate gold chain, confident posture"
+    }
+  ],
+  "affirmation_history": [
+    "You are not just a reflection, you are a light in this world.",
+    "Confidence looks breathtaking on you, darling."
+  ],
+  "skincare_checklist": {
+    "serum": true,
+    "spf": true,
+    "lipoil": true,
+    "lavender_mist": false
+  }
+}

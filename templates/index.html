@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIRA ✧ The Enchanted Smart Mirror Companion</title>
+  <link rel="stylesheet" href="/static/css/mira.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
+</head>
+<body>
+
+  <!-- ✧ APP VIEWPORT WITH FAIRYTALE BEDROOM ATMOSPHERE ✧ -->
+  <div id="app-viewport">
+
+    <!-- Ambient Aurora Glow Orbs -->
+    <div class="aurora-bg">
+      <div class="aurora-orb orb-pink"></div>
+      <div class="aurora-orb orb-lavender"></div>
+      <div class="aurora-orb orb-champagne"></div>
+    </div>
+
+    <!-- Canvas for Floating Cherry Blossoms & Twinkling Stardust -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- ✧ 1. CINEMATIC FAIRYTALE GATE ENTRANCE ✧ -->
+    <div id="gate-overlay">
+      <video id="gate-video" src="/static/media/gate.mp4" playsinline autoplay muted loop preload="auto"></video>
+      <div class="gate-vignette"></div>
+      
+      <div class="gate-content">
+        <div class="gate-golden-sparkles">✧ 🪞 ✨ 🌸 ✨ 🪞 ✧</div>
+        <div class="gate-golden-sub">Enchanted Celestial Sanctuary</div>
+        <h1 class="gate-golden-title">
+          WELCOME MITALI<br>
+          <span class="gold-sub-phrase">TO THE WORLD OF FAIRYTALE</span>
+        </h1>
+        <p class="gate-golden-desc">
+          The celestial gates have opened for you, Princess Mitali. Step into your magical living mirror of starlight, emotional warmth, and radiant grace.
+        </p>
+        <button id="awaken-btn" class="gate-awaken-btn gold-glow-btn">
+          <span>✨ Enter The Fairytale Realm ✨</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ✧ 2. HOLOGRAPHIC TOP BAR ✧ -->
+    <header class="mira-header">
+      <!-- Brand -->
+      <div class="header-brand">
+        <div class="mira-logo-symbol">🪞</div>
+        <div class="brand-text-wrap">
+          <div class="brand-title">MIRA</div>
+          <div class="brand-sub">Living Mirror Companion</div>
+        </div>
+      </div>
+
+      <!-- Ethereal Clock & Moon Phase -->
+      <div class="header-center-clock">
+        <div class="clock-time" id="clock-time">12:00</div>
+        <div class="clock-date" id="clock-date">Saturday, Oct 31 ✧ 🌕 Waxing Gibbous</div>
+      </div>
+
+      <!-- Controls & Mood Selector -->
+      <div class="header-controls">
+        <div class="mood-selector">
+          <button class="mood-btn active" data-mood="radiant" title="Radiant Goddess Glow">Radiant</button>
+          <button class="mood-btn" data-mood="excited" title="Celebratory High Energy">Excited</button>
+          <button class="mood-btn" data-mood="stressed" title="Relaxation & Breathwork">Stressed</button>
+          <button class="mood-btn" data-mood="sad" title="Gentle Comfort & Sanctuary">Gentle</button>
+        </div>
+
+        <button id="audio-toggle-btn" class="icon-btn" title="Toggle Fairytale Ambience">🎵</button>
+        <button id="replay-gate-btn" class="icon-btn" title="Replay Gate Intro">🚪</button>
+        <button id="fullscreen-btn" class="icon-btn" title="Toggle Fullscreen Smart Mirror">⛶</button>
+        <button id="memory-btn" class="icon-btn" title="Open Living Memory">📖</button>
+      </div>
+    </header>
+
+    <!-- ✧ 3. MAIN LIVING MIRROR STAGE ✧ -->
+    <main class="mirror-stage">
+
+      <!-- LEFT RAIL: Aura Vision & Affirmations & Hydration -->
+      <aside class="mirror-rail">
+        
+        <!-- Aura & Emotion Card -->
+        <div class="glass-panel widget-card">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">🔮</div>
+              <div class="widget-label">Aura & Reflection Scan</div>
+            </div>
+          </div>
+          <div class="aura-metric-row">
+            <div class="aura-name-badge">
+              <span>✨</span>
+              <span id="aura-name">Rose Quartz Radiance</span>
+            </div>
+            <div class="aura-score-pill" id="aura-score">96% Glow</div>
+          </div>
+          <div class="aura-compliment-box" id="aura-compliment">
+            "Your reflection carries a calm, magnetic elegance that brightens the entire room, darling."
+          </div>
+          <div class="card-action-row">
+            <button id="scan-aura-btn" class="card-action-btn">
+              <span>📸 Scan Reflection</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Daily Stardust Affirmation -->
+        <div class="glass-panel widget-card">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">🌸</div>
+              <div class="widget-label">Stardust Affirmation</div>
+            </div>
+          </div>
+          <div class="affirmation-text" id="affirmation-text">
+            "You carry starlight in your spirit and grace in every step. Never dim your light for anyone."
+          </div>
+          <div class="card-action-row">
+            <button id="refresh-affirmation-btn" class="card-action-btn"><span>↻ New</span></button>
+            <button id="speak-affirmation-btn" class="card-action-btn"><span>🔊 Listen</span></button>
+          </div>
+        </div>
+
+        <!-- Hydration Dewdrop Tracker -->
+        <div class="glass-panel widget-card">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">💧</div>
+              <div class="widget-label">Hydration Dewdrops</div>
+            </div>
+            <span id="water-count" style="font-size: 0.8rem; color: #ffd1dc; font-weight: 600;">5 / 8 Glasses</span>
+          </div>
+          <div class="dewdrop-grid">
+            <div class="dewdrop active" data-index="1"></div>
+            <div class="dewdrop active" data-index="2"></div>
+            <div class="dewdrop active" data-index="3"></div>
+            <div class="dewdrop active" data-index="4"></div>
+            <div class="dewdrop active" data-index="5"></div>
+            <div class="dewdrop" data-index="6"></div>
+            <div class="dewdrop" data-index="7"></div>
+            <div class="dewdrop" data-index="8"></div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- CENTER: THE LIVING SMART MIRROR -->
+      <section class="mirror-center">
+        <div class="mirror-halo"></div>
+        <div class="mirror-glass-frame" id="mirror-glass-frame">
+          
+          <!-- 1. DORMANT / RESTING MIRROR VIEW (Camera Screen OFF by Default) -->
+          <div id="dormant-mirror-view" class="dormant-mirror-view">
+            <div class="dormant-bg-glow"></div>
+            <div class="dormant-content">
+              <div class="dormant-symbol">🪞</div>
+              <h2 class="dormant-title">Enchanted Living Mirror</h2>
+              <p class="dormant-desc">The mirror is resting in tranquil starlight. Turn on the camera to see your reflection with magical reveal animation or snap a fairytale selfie with teddy companions.</p>
+              
+              <div class="dormant-actions-group">
+                <button id="start-camera-btn" class="mirror-action-btn primary">
+                  <span class="btn-icon">🪄</span> Reveal Face & Camera
+                </button>
+                <button id="upload-photo-btn" class="mirror-action-btn secondary">
+                  <span class="btn-icon">📁</span> Upload Photo
+                </button>
+                <input type="file" id="photo-upload-input" accept="image/*" style="display: none;">
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. LIVE CAMERA VIEW (Clean, Uncluttered, Pure Reflection with Optional Holographic HUD) -->
+          <div id="live-camera-view" class="live-camera-view" style="display: none;">
+            <video id="webcam-feed" autoplay playsinline muted></video>
+            <canvas id="hud-canvas" class="hud-canvas"></canvas>
+            
+            <div id="live-hud-badge" class="live-hud-badge" style="display: none;">
+              <span class="hud-pulse-dot"></span>
+              <span id="live-hud-text">Calm & Reflective • 94% Radiance</span>
+            </div>
+
+            <!-- Minimal Live Controls (Top Bar) -->
+            <div class="camera-top-bar">
+              <button id="ml-insights-btn" class="camera-pill-btn active" title="Toggle Real AdaBoost & XGBoost Machine Learning Diagnostics">
+                <span>⚡ AdaBoost & XGBoost ML</span>
+              </button>
+              <button id="hud-toggle-btn" class="camera-pill-btn active" title="Toggle Real-Time Computer Vision HUD">
+                <span>🔮 Hologram HUD</span>
+              </button>
+              <button id="beauty-toggle-btn" class="camera-pill-btn" title="Toggle Glamour Beauty Glow">
+                <span>✨ Beauty Glow</span>
+              </button>
+              <button id="stop-camera-btn" class="camera-pill-btn close" title="Turn Off Camera">
+                <span>✕ Turn Off</span>
+              </button>
+            </div>
+
+            <!-- Real AdaBoost & XGBoost ML Diagnostics HUD Overlay -->
+            <div id="ml-boosting-card" class="ml-boosting-card">
+              <div class="ml-card-header">
+                <span class="ml-header-title">🚀 Real-Time Face Boosting Analytics</span>
+                <span class="ml-header-tag" id="ml-dataset-tag" title="Trained on 2,900 Real Human Face Images (FER-2013 + Olivetti)">FER-2013 & Olivetti (2,900 Real Faces)</span>
+              </div>
+              
+              <div class="ml-models-grid">
+                <!-- AdaBoost Column -->
+                <div class="ml-model-col adaboost-col">
+                  <div class="model-badge-row">
+                    <span class="model-name">⚡ AdaBoost</span>
+                    <span class="model-lat" id="ada-latency">1.2ms</span>
+                  </div>
+                  <div class="model-pred-emotion" id="ada-emotion">Joyful Smile</div>
+                  <div class="model-pred-glow" id="ada-glow">Glow: 91.5%</div>
+                  <div class="model-prob-bars" id="ada-probs">
+                    <div class="prob-row"><span>Joyful</span><div class="prob-track"><div class="prob-fill" style="width: 85%;"></div></div><span>85%</span></div>
+                  </div>
+                </div>
+
+                <!-- XGBoost Column -->
+                <div class="ml-model-col xgboost-col">
+                  <div class="model-badge-row">
+                    <span class="model-name">🚀 XGBoost</span>
+                    <span class="model-lat" id="xgb-latency">0.8ms</span>
+                  </div>
+                  <div class="model-pred-emotion" id="xgb-emotion">Joyful Smile</div>
+                  <div class="model-pred-glow" id="xgb-glow">Glow: 94.2%</div>
+                  <div class="model-prob-bars" id="xgb-probs">
+                    <div class="prob-row"><span>Joyful</span><div class="prob-track"><div class="prob-fill" style="width: 96%;"></div></div><span>96%</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Real Biometric Feature Metrics -->
+              <div class="ml-biometrics-bar">
+                <div class="bio-metric" title="Skin Tone Luminance (V in HSV)">
+                  <span class="bio-label">Luminance</span>
+                  <span class="bio-val" id="bio-lum">78.4</span>
+                </div>
+                <div class="bio-metric" title="Color Warmth Ratio (R vs B)">
+                  <span class="bio-label">Warmth</span>
+                  <span class="bio-val" id="bio-warmth">1.2x</span>
+                </div>
+                <div class="bio-metric" title="Facial Bilateral Symmetry Score">
+                  <span class="bio-label">Symmetry</span>
+                  <span class="bio-val" id="bio-sym">96%</span>
+                </div>
+                <div class="bio-metric" title="Mouth Curvature & Smile Ratio">
+                  <span class="bio-label">Smile Ratio</span>
+                  <span class="bio-val" id="bio-smile">88%</span>
+                </div>
+                <div class="bio-metric" title="Skin Clarity & Laplacian Variance">
+                  <span class="bio-label">Texture</span>
+                  <span class="bio-val" id="bio-smooth">Clear</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manual Shutter Bar (Bottom Bar) -->
+            <div class="camera-shutter-bar">
+              <button id="manual-snap-btn" class="manual-shutter-btn">
+                <span class="shutter-circle-inner"></span>
+                <span>📸 Click Photo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. ANIMATED TEDDY CASTLE SELFIE RESULT VIEW -->
+          <div id="selfie-result-view" class="selfie-result-view" style="display: none;">
+            <div class="selfie-card-wrapper">
+              <img id="selfie-result-img" class="selfie-result-img" src="/static/media/castle_teddy_composite_sample.jpg" alt="Teddy Bear Castle Selfie">
+              <div class="selfie-sparkles-overlay"></div>
+            </div>
+            
+            <div class="selfie-result-actions">
+              <a id="download-selfie-btn" class="selfie-btn primary" href="/static/media/castle_teddy_composite_sample.jpg" download="mira_teddy_castle_selfie.jpg">
+                <span>💾 Save Teddy Selfie</span>
+              </a>
+              <button id="retake-selfie-btn" class="selfie-btn secondary">
+                <span>🔄 Take Another</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Countdown Overlay (3... 2... 1...) -->
+          <div id="countdown-overlay" class="countdown-overlay" style="display: none;">3</div>
+
+          <!-- Camera Flash Effect -->
+          <div id="camera-flash-burst" class="camera-flash-burst" style="display: none;"></div>
+
+          <!-- ✧ MAGICAL GATE OPENING ANIMATION ✧ -->
+          <div id="face-reveal-overlay" class="face-reveal-overlay">
+            <video id="reveal-video" src="/static/media/face_reveal.mp4" playsinline preload="auto" muted></video>
+            <div class="reveal-rune-backdrop"></div>
+            <div class="reveal-content-box">
+              <div class="reveal-rune-symbol">✧ 🪞 ✧</div>
+              <div class="reveal-status-title" id="reveal-title">Awakening Starlight Glass...</div>
+              <div class="reveal-status-sub" id="reveal-sub">Welcome to your enchanted sanctuary</div>
+              <div class="reveal-spinner-ring"></div>
+            </div>
+          </div>
+
+          <!-- Glass Mirror Glare & Specular Reflection -->
+          <div class="mirror-glare-effect"></div>
+
+        </div>
+      </section>
+
+      <!-- RIGHT RAIL: Styling Lounge & Relaxation & Wellness -->
+      <aside class="mirror-rail">
+
+        <!-- Outfit & Aesthetic Styling Lounge -->
+        <div class="glass-panel widget-card">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">👗</div>
+              <div class="widget-label">Couture Styling Lounge</div>
+            </div>
+          </div>
+          <div class="styling-chips">
+            <button class="style-chip active" data-occasion="College Chic" data-vibe="Effortless Parisian Student">College Chic</button>
+            <button class="style-chip" data-occasion="Romantic Date Night" data-vibe="Enchanted Rose Velvet">Date Night</button>
+            <button class="style-chip" data-occasion="Power Presentation" data-vibe="Blush Tailored Minimalist">Interview / College</button>
+            <button class="style-chip" data-occasion="Clean Girl Aesthetic" data-vibe="Dewy Minimal Luxury">Clean Girl</button>
+            <button class="style-chip" data-occasion="Evening Gala" data-vibe="Moonlit Silk Elegance">Evening Gala</button>
+            <button class="style-chip" data-occasion="Fairytale Princess" data-vibe="Pastel Rose Starlight Gown">Fairytale Princess</button>
+          </div>
+          <div class="styling-result-box" id="styling-result">
+            Pair an ivory cashmere cardigan with a pleated lavender skirt, pearl drop earrings, and a touch of rose petal lip gloss. Your presence will be magnetic.
+          </div>
+          
+          <!-- Curated Color Harmony Swatches -->
+          <div class="styling-palette-wrap" id="styling-palette-wrap">
+            <div class="palette-title">Color Harmony:</div>
+            <div class="palette-swatches" id="palette-swatches">
+              <div class="palette-swatch" style="background: #FDFBF7;" title="Cashmere Ivory"><span>Ivory</span></div>
+              <div class="palette-swatch" style="background: #E6E6FA;" title="Lavender Mist"><span>Lavender</span></div>
+              <div class="palette-swatch" style="background: #FFD1DC;" title="Pearl Pink"><span>Pearl</span></div>
+              <div class="palette-swatch" style="background: #C8B6A6;" title="Soft Taupe"><span>Taupe</span></div>
+            </div>
+          </div>
+
+          <div class="card-action-row" style="margin-top: 0.6rem;">
+            <button id="listen-styling-btn" class="card-action-btn"><span>🔊 Listen</span></button>
+            <button id="save-outfit-btn" class="card-action-btn"><span>💖 Save Look</span></button>
+          </div>
+        </div>
+
+        <!-- 4-7-8 Stress Relief Breathing Mandala (Auto-shows when stressed) -->
+        <div class="glass-panel widget-card" id="breathing-section" style="display: none;">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">🪷</div>
+              <div class="widget-label">4-7-8 Breathing Sanctuary</div>
+            </div>
+          </div>
+          <div class="breathing-container">
+            <div class="lotus-circle" id="lotus-circle">🪷</div>
+            <div class="breath-phase-text" id="breath-phase-text">Inhale Serenity (4s)</div>
+          </div>
+        </div>
+
+        <!-- Beauty & Habit Glow Sanctuary (Fully Interactive) -->
+        <div class="glass-panel widget-card">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <div class="widget-icon">💄</div>
+              <div class="widget-label">Beauty & Habit Glow</div>
+            </div>
+          </div>
+          
+          <div class="habit-interactive-list">
+            <!-- Beauty Sleep Control -->
+            <div class="habit-row">
+              <div class="habit-left">
+                <span class="habit-ico">🌙</span>
+                <div>
+                  <div class="habit-name">Beauty Sleep</div>
+                  <div class="habit-sub" id="sleep-quality-tag">Restful Deep Glow</div>
+                </div>
+              </div>
+              <div class="habit-stepper">
+                <button id="sleep-minus-btn" class="stepper-btn" title="Decrease Sleep Hours">−</button>
+                <span id="sleep-val" class="stepper-val">7.5h</span>
+                <button id="sleep-plus-btn" class="stepper-btn" title="Increase Sleep Hours">+</button>
+              </div>
+            </div>
+
+            <!-- Skincare Ritual Checklist -->
+            <div class="skincare-checklist-box">
+              <div class="skincare-header-row">
+                <span class="skincare-title">🌸 Daily Skincare Ritual</span>
+                <span id="skincare-progress-val" class="skincare-pct">50% Complete</span>
+              </div>
+              <div class="skincare-checkbox-grid">
+                <label class="skincare-check-item">
+                  <input type="checkbox" id="chk-serum" checked>
+                  <span class="check-box-custom"></span>
+                  <span class="check-label-text">Morning Dewdrop Serum</span>
+                </label>
+                <label class="skincare-check-item">
+                  <input type="checkbox" id="chk-spf" checked>
+                  <span class="check-box-custom"></span>
+                  <span class="check-label-text">SPF 50 Porcelain Shield</span>
+                </label>
+                <label class="skincare-check-item">
+                  <input type="checkbox" id="chk-lipoil">
+                  <span class="check-box-custom"></span>
+                  <span class="check-label-text">Rose Petal Lip Oil</span>
+                </label>
+                <label class="skincare-check-item">
+                  <input type="checkbox" id="chk-mist">
+                  <span class="check-box-custom"></span>
+                  <span class="check-label-text">Lavender Silk Mist</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Posture Reset Coach -->
+            <div class="posture-reset-row">
+              <button id="posture-coach-btn" class="posture-coach-btn">
+                <span>🧘 Posture Reset Coach</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+
+    <!-- ✧ 4. BOTTOM INTERACTIVE CHAT & VOICE COMMAND BAR ✧ -->
+    <footer class="mira-bottom-bar">
+      
+      <!-- Elegant Floating MIRA Voice Bar (Outside the mirror) -->
+      <div class="mira-floating-speech-bar" id="mira-speech-bar" title="Click to view full conversation">
+        <span class="speech-sparkle">✨</span>
+        <span class="speech-author">MIRA Whispers:</span>
+        <span class="speech-content" id="mira-speech-text">"Welcome Mitali to the world of fairytale! Your living mirror awaits your radiant glow."</span>
+        <button id="toggle-dialogue-btn" class="open-dialogue-btn" title="View Full Conversation & Detailed Answers">💬 Full Dialogue</button>
+      </div>
+
+      <!-- Quick Mood Prompts -->
+      <div class="quick-prompts-row">
+        <button class="quick-prompt-pill" data-prompt="Rate my glow and posture today!">✨ Rate my glow</button>
+        <button class="quick-prompt-pill" data-prompt="Give me a powerful confidence boost for college!">🎓 College Pep Talk</button>
+        <button class="quick-prompt-pill" data-prompt="I'm feeling a little anxious, comfort me.">🫂 Comfort me</button>
+        <button class="quick-prompt-pill" data-prompt="What makeup & hairstyle pairs best with my outfit?">💄 Makeup & Hair</button>
+        <button class="quick-prompt-pill" data-prompt="Whisper a fairytale secret to me.">🧚 Tell a fairytale secret</button>
+      </div>
+
+      <!-- Chat Input Dock with Mic & Send -->
+      <div class="chat-input-wrapper">
+        <button id="mic-btn" class="mic-btn" title="Speak to MIRA hands-free">🎙️</button>
+        <input type="text" id="chat-input" class="chat-input" placeholder="Speak or type to your magical mirror..." autocomplete="off">
+        <button id="send-btn" class="send-btn" title="Send to MIRA">🪄</button>
+      </div>
+
+    </footer>
+
+    <!-- ✧ 4B. INTERACTIVE LIVING MIRROR DIALOGUE WINDOW (Full answers to anything) ✧ -->
+    <div id="mira-dialogue-window" class="mira-dialogue-window">
+      <div class="dialogue-header">
+        <div class="dialogue-header-left">
+          <span class="dialogue-fairy-icon">🪞</span>
+          <div>
+            <div class="dialogue-title">MIRA Living Oracle</div>
+            <div class="dialogue-badge">✨ Universal Wisdom • Ask Literally Anything</div>
+          </div>
+        </div>
+        <div class="dialogue-header-actions">
+          <button id="clear-dialogue-btn" class="dialogue-icon-btn" title="Clear Dialogue">🗑️</button>
+          <button id="close-dialogue-btn" class="dialogue-icon-btn" title="Minimize Window">✕</button>
+        </div>
+      </div>
+      
+      <div id="dialogue-messages-list" class="dialogue-messages-list">
+        <div class="dialogue-msg mira-msg">
+          <div class="dialogue-avatar">🪞</div>
+          <div class="dialogue-bubble">
+            <div class="dialogue-author">MIRA Whispers</div>
+            <div class="dialogue-text">
+              Welcome, Princess Mitali. I am connected to the celestial archives of universal wisdom. Ask me literally <b>anything</b>—academics, science, coding, history, literature, study schedules, fashion, makeup, recipes, life advice, or fairytale lore. I am here to guide and empower you.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thinking indicator -->
+      <div id="dialogue-thinking" class="dialogue-thinking" style="display: none;">
+        <span class="sparkle-pulse">✨</span>
+        <span>MIRA is consulting the celestial starlight & archives...</span>
+      </div>
+    </div>
+
+    <!-- ✧ 5. PERSISTENT LIVING MEMORY DRAWER ✧ -->
+    <div id="memory-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title">✧ MIRA's Living Memory ✧</div>
+        <button id="close-drawer-btn" class="icon-btn">✕</button>
+      </div>
+      
+      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.5;">
+        MIRA remembers your personal dreams, preferences, and aesthetic identity so every reflection is uniquely tailored to you.
+      </p>
+
+      <div class="drawer-field">
+        <label class="drawer-label">Your Name / Nickname</label>
+        <input type="text" id="drawer-user-name" class="drawer-input" value="Mitali">
+      </div>
+
+      <div class="drawer-field">
+        <label class="drawer-label">Favorite Aesthetic Colors</label>
+        <input type="text" id="drawer-colors" class="drawer-input" value="Rose Gold, Lavender Mist, Pearl Pink, Champagne">
+      </div>
+
+      <div class="drawer-field">
+        <label class="drawer-label">Your Core Aspirations & Goals</label>
+        <input type="text" id="drawer-goals" class="drawer-input" value="Radiate confidence & grace, master studies, nourish glowing spirit">
+      </div>
+
+      <button id="save-memory-btn" class="drawer-save-btn">✨ Save to Eternal Memory</button>
+
+      <!-- Saved Wardrobe Section -->
+      <div class="drawer-section-title" style="margin-top: 1.4rem; font-family: 'Cinzel', serif; font-size: 0.85rem; color: #ffd1dc; font-weight: 700; letter-spacing: 1px;">
+        👗 Saved Couture Wardrobe
+      </div>
+      <div id="drawer-wardrobe-list" class="drawer-wardrobe-list" style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 8px;">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Past Conversation Memories Section -->
+      <div class="drawer-section-title" style="margin-top: 1.4rem; font-family: 'Cinzel', serif; font-size: 0.85rem; color: #ffd1dc; font-weight: 700; letter-spacing: 1px;">
+        💭 Recent Mirror Memories
+      </div>
+      <div id="drawer-memories-list" class="drawer-memories-list" style="margin-top: 0.6rem; display: flex; flex-direction: column; gap: 8px;">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/sound_effects.js"></script>
+  <script src="/static/js/sakura_particles.js"></script>
+  <script src="/static/js/mira.js"></script>
+</body>
+</html>

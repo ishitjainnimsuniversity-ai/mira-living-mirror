@@ -1,0 +1,11 @@
+{
+  "gemini_api_key": "",
+  "primary_model": "gemini-3.1-flash-lite",
+  "fallback_models": [
+    "gemini-3.6-flash",
+    "gemini-3.5-flash"
+  ],
+  "default_user_name": "Mitali",
+  "port": 5050,
+  "app_name": "MIRA — Ultra-Intelligent AI Mirror Companion"
+}
