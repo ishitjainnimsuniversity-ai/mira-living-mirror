@@ -238,7 +238,7 @@ def call_gemini_api(prompt_text, system_inst, image_b64=None, context_type="gene
             continue
             
     # Intelligent enchanted fallback when API key is rate-limited or syncing
-    q = prompt_text.lower()
+    q = prompt_text.split("User says to the mirror:")[-1].lower() if "User says to the mirror:" in prompt_text else prompt_text.lower()
     name = memory.get("profile", {}).get("name", "Princess Mitali")
     if "affirmation" in q or context_type == "affirmation":
         affirmations = [
