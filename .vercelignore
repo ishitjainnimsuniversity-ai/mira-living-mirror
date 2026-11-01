@@ -1,0 +1,11 @@
+.git
+.github
+.streamlit
+streamlit_app.py
+*.mp4
+*.exe
+__pycache__
+*.pyc
+train_real_models.py
+test_*.py
+scratch
