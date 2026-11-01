@@ -37,6 +37,19 @@ app = Flask(
 )
 CORS(app)
 
+@app.route("/static/<path:filename>")
+def serve_static_asset(filename):
+    for candidate in [
+        os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, "public", "static"),
+        os.path.join(os.path.dirname(BASE_DIR), "static"),
+        os.path.join(os.path.dirname(BASE_DIR), "public", "static")
+    ]:
+        full_p = os.path.join(candidate, filename)
+        if os.path.exists(full_p):
+            return send_from_directory(candidate, filename)
+    return jsonify({"error": "Static asset not found", "path": filename}), 404
+
 # Initialize Real Computer Vision Multi-Stage Detectors
 if cv2 is not None:
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
